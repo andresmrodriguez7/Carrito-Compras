@@ -10,8 +10,10 @@ class Evento {
 let sabado = new Evento("Sabado de Carnaval", 250000, "Fiesta de carnaval", "0");
 let domingo = new Evento("Domingo de Carnaval", 330000, "Fiesta de carnaval", "1");
 let lunes = new Evento("Lunes de Carnaval", 350000, "Fiesta de carnaval", "2");
+let martes = new Evento("Martes de Carnaval", 350000, "Fiesta de carnaval", "3");
+let miercoles = new Evento("Miercoles de Carnaval", 380000, "Fiesta de carnaval", "4");
 
-let productos = [sabado, domingo, lunes];
+let productos = [sabado, domingo, lunes, martes, miercoles];
 let newProduct = document.getElementById("productos");
 let creador;
 let precioTotal = 0;
@@ -58,7 +60,7 @@ function dibujarCarrito(item, destino) {
             <small class="text-muted">${element.descripcion}</small>
         </div>
         <span class="text-muted">$ ${element.precio} <span>
-         <i style="color: #f57b7c" id=${element.sku} class="fas fa-minus-circle"></i></span>
+         <i style="color: #f57b7c" id=${item.length - 1} class="fas fa-minus-circle"></i></span>
          </span>`
         destino.appendChild(creador);
     }
@@ -67,7 +69,9 @@ function dibujarCarrito(item, destino) {
 
     for (let i = 0; i < retirarBtn.length; i++) {
         const element = retirarBtn[i];
+        element.id=i;
         element.addEventListener('click', function() {
+            console.log(this.id);
             item.splice(this.id, 1);
             dibujarCarrito(item, destino);
             let counter = document.getElementById("contador");
